@@ -1,6 +1,7 @@
 class Smithy(Card):
     def action(self, player):
-        player.hand += draw_cards(3)
+        draw_cards(player, 3)
+        return
 
 class Cellar(Card):
     pass
