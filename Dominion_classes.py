@@ -1,7 +1,8 @@
 class Player(object):
-    def __init__(self, name=Anonymous)
+    def __init__(self, name='Anonymous'):
         self.player_name = name
-        self.player_deck = ['Estate', 'Estate', 'Estate', 'Copper', 'Copper', 'Copper', 'Copper', 'Copper', 'Copper', 'Copper',
+        self.hand = []
+        self.player_deck = ['Estate', 'Estate', 'Estate', 'Copper', 'Copper', 'Copper', 'Copper', 'Copper', 'Copper', 'Copper',]
         self.player_handsize = 5
         self.player_turncount = 0
         self.player_activeturn = false
@@ -11,7 +12,7 @@ class Player(object):
 
 
 class Card(object):
-    def init_(self, cardtype, cardsubtype, costtobuy, vpvalue)
+    def __init__(self, cardtype, cardsubtype, costtobuy, vpvalue):
         self.cardtype = cardtype
         self.cardsubtype = cardsubtype
         self.cardcost = costtobuy
