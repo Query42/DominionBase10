@@ -14,4 +14,4 @@ def PlayerInit():
         PlayerList.append(PlayerName)
     return PlayerList
 
-print(PlayerInit()[1].player_deck)
+#print(PlayerInit()[1].player_deck)
