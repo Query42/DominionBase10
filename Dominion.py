@@ -1,12 +1,19 @@
-#import packages
+import Dominion_player_class
+import time
+#Dominion in python3 
+#version 1.0 started 20180518
 
 #Initialize gamestate
     #Announce kingdom cards
     #Ensure supply count of each card
 
 #Welcome message
+print("Dominion implemented in python 3. ")
+
 #Ask for player names
-    #Initialize players with player name input
+#Initialize players with player name input
+Player_list = Player_init()
+
 #Randomize turn order
 #Announce turn order
 
