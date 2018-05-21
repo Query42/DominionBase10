@@ -11,9 +11,9 @@ class Player(object):
 
 
 class Card(object):
-    def __init__(self, cardtype, cardsubtype, costtobuy, vpvalue):
-        self.cardtype = cardtype
-        self.cardsubtype = cardsubtype
-        self.cardcost = costtobuy
-        self.cardvpvalue = vpvalue
+    def __init__(self, cardtype, cardsubtype, costtobuy, vp_value):
+        self.type = cardtype
+        self.subtype = cardsubtype
+        self.cost = costtobuy
+        self.vp_value = vp_value
 
