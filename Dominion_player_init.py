@@ -1,8 +1,9 @@
 import Dominion_player_class
 import Dominion_base_card_class
 import time
+import random
 
-def PlayerInit():
+def Player_init():
     NumberofPlayers = 0 #declare the number of players to 0
     PlayerList = []
     while NumberofPlayers<4: #loop until there are 4 players
@@ -12,6 +13,11 @@ def PlayerInit():
         PlayerName = Dominion_player_class.Player(PlayerName)
         #Player PlayerName #declare Player classes with Dominion_classes.py
         PlayerList.append(PlayerName)
+    random.shuffle(PlayerList)
     return PlayerList
 
-#print(PlayerInit()[1].player_deck)
+
+#Player_list = Player_init()
+
+
+

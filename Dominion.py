@@ -12,10 +12,13 @@ print("Dominion implemented in python 3. ")
 
 #Ask for player names
 #Initialize players with player name input
+#Randomize turn order (rolled into init)
 Player_list = Player_init()
 
-#Randomize turn order
 #Announce turn order
+print("The turn order is:")
+for x in Player_list:
+    print(x.player_name)
 
 while True: #commence play loop
     #Rotate to next player
