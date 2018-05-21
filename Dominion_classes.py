@@ -7,7 +7,7 @@ class Player(object):
         self.player_activeturn = false
         self.player_baseactions = 1
         self.player_remainingactions = 0
-        self.player_purchasehistory =[]
+        self.player_purchasehistory = []
 
 
 class Card(object):
