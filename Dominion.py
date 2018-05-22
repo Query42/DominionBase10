@@ -1,5 +1,8 @@
-import Dominion_player_class
 import time
+
+import player_init
+
+
 #Dominion in python3 
 #version 1.0 started 20180518
 
@@ -13,12 +16,12 @@ print("Dominion implemented in python 3. ")
 #Ask for player names
 #Initialize players with player name input
 #Randomize turn order (rolled into init)
-Player_list = Player_init()
+player_list = player_init.player_init()
 
 #Announce turn order
 print("The turn order is:")
-for x in Player_list:
-    print(x.player_name)
+for player in player_list:
+    print(player.name)
 
 while True: #commence play loop
     #Rotate to next player
