@@ -1,7 +1,7 @@
 import time
 import random
 
-import Dominion_base_card_class
+import base_cards
 
 
 class Player():
@@ -9,12 +9,13 @@ class Player():
     def __init__(self, name):
         self.name = name
         self.deck = ['Estate', 'Estate', 'Estate', 'Copper', 'Copper', 'Copper', 'Copper', 'Copper', 'Copper', 'Copper']
-        self.handsize = 5
-        self.turncount = 0
-        self.activeturn = 0
-        self.baseactions = 1
-        self.remainingactions = 0
-        self.gained_ = []
+        self.hand_size = 5
+        self.hand = []
+        self.discard_pile = []
+        self.turn_count = 0
+        self.actions_left = 1
+        self.buys_left = 1
+        self.gained_last_turn = []
 
 def player_init():
     """
@@ -39,7 +40,7 @@ def player_init():
     random.shuffle(player_list)
     return player_list
 
-player_list = player_init()
-
-for player_obj in player_list:
-    print(player_obj.name)
+if __name__ == "__main__":
+    player_list = player_init()
+    for player_obj in player_list:
+        print(player_obj.name)

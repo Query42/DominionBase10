@@ -1,4 +1,5 @@
 import time
+import random
 
 import player_init
 
@@ -23,7 +24,9 @@ print("The turn order is:")
 for player in player_list:
     print(player.name)
 
-while True: #commence play loop
+while True:
+    pass
+    #commence play loop
     #Rotate to next player
     #Run turn function
 
@@ -34,13 +37,17 @@ while True: #commence play loop
     #Announce scores and winner(s)
 
 def player_turn():
+    pass
     #Set actions/buys/hand size to 5
     #Announce cards in hand to player
     #If Actions present in hand:
         #While actions remaining > 0:
             #Prompt player to play actions
             #If player plays an action
+                #Remove played action from player's hand
+                #Decrement actions remaining by 1
                 #Execute action function
+                #Announce cards in hand to player
             else:
                 continue
     #Count money
@@ -57,17 +64,34 @@ def player_turn():
     #Add remainder of hand to discard
     #Draw (hand size) cards
 
-def draw_cards(player, draw_count):
-    """Takes cards from top of deck equal to draw_count and returns them as a list"""
+def draw_cards(player, draw_target):
+    """Takes cards from top of deck equal to draw_count and returns them as a list."""
+    deck_cycled = False
     drawn_cards = []
-    for item in range(1, draw_count):
-        if #player has cards in deck:
-            #pop out the top card in the deck/add it to drawn_cards
+    drawn_count = 0
+    for item in range(draw_target):
+        if player.deck:
+            drawn_cards.append(player.deck.pop(0))
+            drawn_count += 1
+        elif player.discard_pile:
+            print("Drew {} card(s): {}.".format(
+                drawn_count,
+                drawn_cards
+                ))
+            if deck_cycled:
+                print("Deck exhausted.")
+                break
+            else:
+                print("Shuffling the deck...")
+                drawn_cards += shuffle(player)
+                deck_cycled = True
         else:
-            drawn_cards += #shuffle function
-            #pop out top card of deck/add it to drawn_cards
+            print("No cards remaining in deck!")
     return drawn_cards
 
-def shuffle():
-    """Shuffles discard pile (if present) into deck and draws/returns top card"""
-    pass
+def shuffle(player):
+    """Shuffles discard pile (if present) into deck and draws/returns top card."""
+    player.deck += player.discard_pile
+    player.discard_pile = []
+    random.shuffle(player.deck)
+    return player.deck.pop(0)
