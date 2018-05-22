@@ -57,7 +57,7 @@ def player_turn():
     #Add remainder of hand to discard
     #Draw (hand size) cards
 
-def draw_cards(draw_count):
+def draw_cards(player, draw_count):
     """Takes cards from top of deck equal to draw_count and returns them as a list"""
     drawn_cards = []
     for item in range(1, draw_count):
@@ -66,6 +66,7 @@ def draw_cards(draw_count):
         else:
             drawn_cards += #shuffle function
             #pop out top card of deck/add it to drawn_cards
+    return drawn_cards
 
 def shuffle():
     """Shuffles discard pile (if present) into deck and draws/returns top card"""
