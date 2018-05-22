@@ -11,13 +11,8 @@ class Player():
             'Estate', 'Estate', 'Estate', 'Copper',
             'Copper', 'Copper', 'Copper', 'Copper', 
             'Copper', 'Copper']
-        self.hand_size = 5
         self.hand = []
         self.discard_pile = []
-        self.turn_count = 0
-        self.actions_left = 1
-        self.buys_left = 1
-        self.gained_last_turn = []
 
 def player_init():
     """
