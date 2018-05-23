@@ -19,7 +19,7 @@ class Player():
         self._turn_setup(self)
         self._action_phase(self)
         self._buy_phase(self)
-        return self._cleanup(self) #returns "True" if game end conditions met
+        self._cleanup(self) #returns "True" if game end conditions met
 
     def _turn_setup(self):
         self.turn_count += 1
@@ -29,7 +29,6 @@ class Player():
         self.money = 0
         self.buys_left = 1
         self.in_play = []
-        self.gained_last_turn = []
 
     def _action_phase(self):
         #if no actions in hand, return
@@ -74,7 +73,6 @@ class Player():
         self.discard_pile += self.hand
         self.hand = []
         self.draw_cards(self, 5)
-        #Check for game end. If game ends, return "True"
         pass
 
     def play_card(self, played_card):
@@ -101,7 +99,13 @@ class Player():
             print("The {} supply pile is empty!".format(gained_card))
             return
         card.supply -= 1
+        if card.supply == 0:
+            if card = Province:
+                empty_supplies += 3
+            else:
+                empty_supplies += 1
         zone.append(gained_card)
+        gained_this_turn.append(gained_card)
 
     def draw_cards(self, draw_target):
         """Takes cards from top of deck equal to draw_count and returns them as a list."""
