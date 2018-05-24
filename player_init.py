@@ -2,7 +2,7 @@ import time
 import random
 
 import base_cards
-#import Dominion
+from dominion import *
 
 
 class Player():
@@ -16,14 +16,16 @@ class Player():
         self.turn_count = 0
 
     def _turn(self):
-        self._turn_setup(self)
-        self._action_phase(self)
-        self._buy_phase(self)
-        self._cleanup(self) #returns "True" if game end conditions met
+        # Take one turn
+        self._turn_setup()
+        self._action_phase()
+        self._buy_phase()
+        self._cleanup() #returns "True" if game end conditions met
 
     def _turn_setup(self):
+        # Set up for current turn.
         self.turn_count += 1
-        #resolve duration effects
+        # Resolve duration effects.
         #self.hand_size = 5 #reset from Outpost
         self.actions_left = 1
         self.money = 0
@@ -31,48 +33,72 @@ class Player():
         self.in_play = []
 
     def _action_phase(self):
-        #if no actions in hand, return
-        print("***Action Phase***")
+        # Action phase of turn.
+        action_in_hand = False
+        for card in self.hand:
+            if "Action" in card.types:
+                action_in_hand = True
+                break
+        if action_in_hand is False:
+            return
+        # Ensure player has an action in hand.
+
+        print("***Action Phase***\n")
         while True:
             if self.actions_left == 0:
                 print("No actions remaining.")
                 break
             #elif no actions in hand, print "all actions played", return
             else:
-                self.print_hand(self)
+                self.print_hand()
                 print("What action would you like to play? (Type 'None' to play no action)")
                 played_action = input("> ")
                 if played_action.lower() == 'none':
                     break
                 elif played_action.lower() in self.hand:
                     #ensure card is an action
-                    self.play_card(self, played_action)
-                    self.do_action(self, played_action)
+                    self.play_card(played_action)
+                    self.do_action(played_action)
                     self.actions_left -= 1
                 else:
                     print("No such card in hand.")
 
     def _buy_phase(self):
-        print("***Buy Phase***")
-        #This will need functionality to loop and select treasures to play in the
-        #future (Prosperity, etc.) But for now we can just play all treasures and move on.
-
-        #count player's money
-        #while buys remain:
-            #list cards in supply
-            #prompt player to buy
-            #self.gain_card(self, bought_card)
-        pass
+        print("***Buy Phase***\n")
+        for card in self.hand:
+            if 'Treasure' in card.types:
+                self.money += card.coin_value
+                play_card(card)
+        # This will need functionality to loop and select treasures to play in the
+        # future (Prosperity, etc.) But for now we can just play all treasures and move on.
+        while buys_left > 0:
+            print("You have ${} and {} buys.\nWhat would you like to buy?\n"
+                .format(self.money, self.buys_left))
+            #list cards in supply here
+            print("(Enter 'None' to buy nothing.)")
+            buy = input("> ")
+            if buy.lower() == 'none':
+                break
+            elif buy.lower() in card_map:
+                if self.money < parse_card(buy.capitalize()).buy_cost:
+                    print("You can't afford that card!")
+                    continue
+                elif gain_card(buy.capitalize()) is True:
+                    self.buys_left -= 1
+                    self.money -= parse_card(buy.capitalize()).buy_cost
+                    assert self.money >= 0
+                # Try to gain the card, but only reduce buys/money if successful.
+            else:
+                print("That's not a card you can buy.")
 
     def _cleanup(self):
         self.discard_pile += self.in_play
         self.in_play = []
-        #re: above lines: once duration cards are added, they will need to check each card
-        #and either discard it or move it to a duration zone depending on if it has the 
-        #Duration subtype
+        # Once duration cards are added, they will need to check each card
+        # and either discard it or move it to a duration zone depending on if it has the 
+        # Duration subtype
         self.discard_pile += self.hand
-        self.hand = []
-        self.draw_cards(self, 5)
+        self.hand = self.draw_cards(5)
         pass
 
     def play_card(self, played_card):
@@ -100,7 +126,7 @@ class Player():
             return
         card.supply -= 1
         if card.supply == 0:
-            if card = Province:
+            if card == province:
                 empty_supplies += 3
             else:
                 empty_supplies += 1
@@ -123,7 +149,7 @@ class Player():
                     break
                 else:
                     print("Shuffling the deck...")
-                    drawn_cards += self._shuffle(self)
+                    drawn_cards += self._shuffle()
                     deck_cycled = True
             else:
                 print("No cards remaining in deck!")
