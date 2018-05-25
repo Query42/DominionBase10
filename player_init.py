@@ -1,4 +1,5 @@
-import time
+"""Player class and player initialization for Dominion game."""
+
 import random
 
 import base_cards
@@ -9,7 +10,9 @@ class Player():
     """Player object. Tracks states of individual players."""
     def __init__(self, name):
         self.name = name
-        self.deck = ['Estate', 'Estate', 'Estate', 'Copper', 'Copper', 'Copper', 'Copper', 'Copper', 'Copper', 'Copper']
+            self.deck = [
+                'Estate', 'Estate', 'Estate', 'Copper', 'Copper', 
+                'Copper', 'Copper', 'Copper', 'Copper', 'Copper']
         #self.hand_size = 5 (Currently no effects change this. May only be necessary in _turn_setup())
         self.hand = []
         self.discard_pile = []
@@ -170,7 +173,7 @@ def player_init():
     """
     player_count = 0 #declare the number of players to 0
     player_list = []
-    while player_count<4: #loop until there are 4 players
+    while player_count < 4: #loop until there are 4 players
         player_count = player_count + 1 #increment player_count
         print("What is the name of player {}?".format(player_count))
         #I changed the above input prompt to avoid "4st"
@@ -187,6 +190,6 @@ def player_init():
     return player_list
 
 if __name__ == "__main__":
-    player_list = player_init()
-    for player_obj in player_list:
+    players = player_init()
+    for player_obj in players:
         print(player_obj.name)
