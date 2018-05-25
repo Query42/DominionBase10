@@ -11,10 +11,8 @@ class Cellar(Card):
         player.actions_left += 1
         discarded_cards = []
         while len(player.hand) > 0:
-            print(
-                "Your current hand:", 
-                player.hand, 
-                "\nWhat would you like to discard?") #clean up later for nicer ux
+            player.print_hand(player)
+            print("What would you like to discard?")
             print(
                 "(Type the card name, 'Cancel' to cancel, or 'Done' to stop discarding.)"
                 )
@@ -35,7 +33,7 @@ class Cellar(Card):
             print("All cards discarded!")
         print("Drawing {} cards.".format(len(discarded_cards)))
         player.hand += draw_cards(player, len(discarded_cards))
-        assert len(player.hand) == debug_count
+        assert len(player.hand) == debug_count, "Cellar lost a card."
         return
 
 class Village(Card):
