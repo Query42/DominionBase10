@@ -10,7 +10,7 @@ class Player():
     def __init__(self, name):
         self.name = name
         self.deck = ['Estate', 'Estate', 'Estate', 'Copper', 'Copper', 'Copper', 'Copper', 'Copper', 'Copper', 'Copper']
-        #self.hand_size = 5 currently no effects change this. May only be necessary in _turn_setup()
+        #self.hand_size = 5 (Currently no effects change this. May only be necessary in _turn_setup())
         self.hand = []
         self.discard_pile = []
         self.turn_count = 0
@@ -20,13 +20,13 @@ class Player():
         self._turn_setup()
         self._action_phase()
         self._buy_phase()
-        self._cleanup() #returns "True" if game end conditions met
+        self._cleanup()
 
     def _turn_setup(self):
         # Set up for current turn.
         self.turn_count += 1
-        # Resolve duration effects.
-        #self.hand_size = 5 #reset from Outpost
+        # Resolve duration effects (Not yet implemented.)
+        #self.hand_size = 5 # Reset from Outpost (Not yet implemented.)
         self.actions_left = 1
         self.money = 0
         self.buys_left = 1
@@ -64,6 +64,7 @@ class Player():
                     print("No such card in hand.")
 
     def _buy_phase(self):
+        # Buy phase of turn.
         print("***Buy Phase***\n")
         for card in self.hand:
             if 'Treasure' in card.types:
@@ -92,6 +93,7 @@ class Player():
                 print("That's not a card you can buy.")
 
     def _cleanup(self):
+        # Cleans up play area and sets up player's next hand.
         self.discard_pile += self.in_play
         self.in_play = []
         # Once duration cards are added, they will need to check each card
@@ -163,8 +165,7 @@ class Player():
         return self.deck.pop(0)
 
 def player_init():
-    """
-    Prompt for names of four players. Create player objects.
+    """Prompt for names of four players. Create player objects.
     Randomize turn order. Return randomized list of player objects.
     """
     player_count = 0 #declare the number of players to 0
