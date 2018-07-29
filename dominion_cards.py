@@ -1,5 +1,6 @@
 from base_cards import Card
 
+
 class Smithy(Card):
     def action(player):
         player.hand += draw_cards(player, 3)

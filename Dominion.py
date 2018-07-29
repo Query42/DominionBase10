@@ -2,13 +2,14 @@ import time
 import random
 
 import player_init
+import base_cards
 
 
-#Dominion in python3 
-#version 1.0 started 20180518
+# Dominion in python3
+# version 1.0 started 20180518
 
 def parse_card(card_string):
-    return card_dict[card_string]
+    return base_cards.card_map[card_string]
 
 if __name__ == "__main__":
     #Initialize gamestate
